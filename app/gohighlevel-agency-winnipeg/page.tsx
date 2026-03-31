@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import CTAButton from "@/components/CTAButton";
 
 export const metadata: Metadata = {
   title: "GoHighLevel Agency Winnipeg | Your Lead Nest",
   description:
-    "Your Lead Nest is Winnipeg's GoHighLevel agency. We set up automation workflows, CRM pipelines, and funnels so local businesses capture and convert more leads — fast.",
+    "Winnipeg's GoHighLevel agency. We set up automation workflows, CRM pipelines & funnels so local businesses capture and convert more leads.",
   keywords: [
     "GoHighLevel agency Winnipeg",
     "GoHighLevel Winnipeg",
@@ -160,6 +161,17 @@ export default function GoHighLevelAgencyWinnipegPage() {
               </div>
             ))}
           </div>
+          <p className="text-center text-slate-600 mt-10">
+            See how our{" "}
+            <Link href="/speed-to-lead-winnipeg" className="text-accent font-semibold hover:underline">
+              speed-to-lead automation
+            </Link>{" "}
+            and{" "}
+            <Link href="/gohighlevel-winnipeg" className="text-accent font-semibold hover:underline">
+              GoHighLevel platform expertise
+            </Link>{" "}
+            help Winnipeg businesses respond faster and close more deals.
+          </p>
         </div>
       </section>
 
