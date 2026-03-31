@@ -1,8 +1,8 @@
 /**
- * Run Google SERP scraper for Winnipeg keyword ranking baseline.
+ * Run Google SERP baseline via DataForSEO for Winnipeg keyword rankings.
  *
  * Usage:
- *   APIFY_API_TOKEN=your_token npx tsx scripts/scrape-serp-baseline.ts
+ *   DATAFORSEO_LOGIN=... DATAFORSEO_PASSWORD=... npx tsx scripts/scrape-serp-baseline.ts
  *
  * Output:
  *   data/serp-baseline-<timestamp>.json
@@ -11,9 +11,11 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import { createApifyClient } from "../lib/apify";
-import { scrapeGoogleSerp } from "../lib/apify/serp";
-import type { SerpRow } from "../lib/apify/types";
+import { createDataForSEOClient } from "../lib/dataforseo/client";
+import { serpSearch } from "../lib/dataforseo/serp";
+
+const LOGIN = process.env.DATAFORSEO_LOGIN ?? "sam@yourleadnest.com";
+const PASSWORD = process.env.DATAFORSEO_PASSWORD ?? "467781010def5862";
 
 const WINNIPEG_SEO_QUERIES = [
   // Service + Location
@@ -36,11 +38,21 @@ const WINNIPEG_SEO_QUERIES = [
   "business automation software Manitoba",
 ];
 
-function exportSerpToCsv(rows: SerpRow[], outputDir: string, filename: string): string {
+interface SerpBaselineRow {
+  query: string;
+  position: number;
+  url: string;
+  title: string;
+  featuredSnippet: string;
+  featuredSnippetContent: string;
+  organicOrPaid: string;
+}
+
+function exportToCsv(rows: SerpBaselineRow[], outputDir: string, filename: string): string {
   fs.mkdirSync(outputDir, { recursive: true });
   const filePath = path.join(outputDir, filename);
 
-  const headers = [
+  const headers: (keyof SerpBaselineRow)[] = [
     "query",
     "position",
     "url",
@@ -54,7 +66,7 @@ function exportSerpToCsv(rows: SerpRow[], outputDir: string, filename: string): 
 
   for (const row of rows) {
     const values = headers.map((h) => {
-      const val = row[h as keyof SerpRow];
+      const val = row[h];
       if (val == null) return "";
       const str = String(val);
       return str.includes(",") || str.includes('"') || str.includes("\n")
@@ -69,7 +81,7 @@ function exportSerpToCsv(rows: SerpRow[], outputDir: string, filename: string): 
   return filePath;
 }
 
-function exportSerpToJson(rows: SerpRow[], outputDir: string, filename: string): string {
+function exportToJson(rows: SerpBaselineRow[], outputDir: string, filename: string): string {
   fs.mkdirSync(outputDir, { recursive: true });
   const filePath = path.join(outputDir, filename);
   fs.writeFileSync(filePath, JSON.stringify(rows, null, 2), "utf-8");
@@ -78,35 +90,68 @@ function exportSerpToJson(rows: SerpRow[], outputDir: string, filename: string):
 }
 
 async function main() {
-  const token = process.env.APIFY_API_TOKEN;
-  if (!token) {
-    console.error("Error: Set APIFY_API_TOKEN environment variable.");
-    console.error("  APIFY_API_TOKEN=apify_api_xxx npx tsx scripts/scrape-serp-baseline.ts");
-    process.exit(1);
+  const client = createDataForSEOClient({ login: LOGIN, password: PASSWORD });
+
+  console.log(`Running SERP baseline via DataForSEO for ${WINNIPEG_SEO_QUERIES.length} keywords...\n`);
+
+  const allRows: SerpBaselineRow[] = [];
+  let totalCost = 0;
+
+  for (const keyword of WINNIPEG_SEO_QUERIES) {
+    console.log(`  Querying: "${keyword}"`);
+    try {
+      const result = await serpSearch(client, {
+        keyword,
+        locationName: "Winnipeg,Manitoba,Canada",
+        languageCode: "en",
+        depth: 10,
+      });
+
+      if (!result || !result.items) {
+        console.log(`    No results for "${keyword}"`);
+        continue;
+      }
+
+      // Check for featured snippet
+      const featuredSnippetItem = (result.items as any[]).find(
+        (item) => item.type === "featured_snippet",
+      );
+
+      for (const item of result.items as any[]) {
+        const isOrganic = item.type === "organic";
+        const isPaid = item.type === "paid";
+        const isFeaturedSnippet = item.type === "featured_snippet";
+
+        if (!isOrganic && !isPaid && !isFeaturedSnippet) continue;
+
+        allRows.push({
+          query: keyword,
+          position: item.rank_group ?? item.rank_absolute ?? 0,
+          url: item.url ?? "",
+          title: item.title ?? "",
+          featuredSnippet: isFeaturedSnippet ? "yes" : featuredSnippetItem ? "yes (other result)" : "no",
+          featuredSnippetContent: isFeaturedSnippet ? (item.description ?? "") : "",
+          organicOrPaid: isPaid ? "paid" : "organic",
+        });
+      }
+
+      console.log(`    Found ${result.items_count} items`);
+    } catch (err) {
+      console.error(`    Error for "${keyword}":`, err);
+    }
   }
 
-  const client = createApifyClient(token);
-
-  console.log(`Running SERP baseline for ${WINNIPEG_SEO_QUERIES.length} keywords...\n`);
-
-  const rows = await scrapeGoogleSerp(client, {
-    queries: WINNIPEG_SEO_QUERIES,
-    maxResultsPerQuery: 10,
-    countryCode: "ca",
-    languageCode: "en",
-  });
-
-  console.log(`\nTotal SERP rows: ${rows.length}`);
+  console.log(`\nTotal rows: ${allRows.length}`);
 
   const ts = new Date().toISOString().replace(/[:.]/g, "-");
   const outputDir = "data";
 
-  exportSerpToJson(rows, outputDir, `serp-baseline-${ts}.json`);
-  exportSerpToCsv(rows, outputDir, `serp-baseline-${ts}.csv`);
+  exportToJson(allRows, outputDir, `serp-baseline-${ts}.json`);
+  exportToCsv(allRows, outputDir, `serp-baseline-${ts}.csv`);
 
   // Print summary
   const queryStats = new Map<string, number>();
-  for (const row of rows) {
+  for (const row of allRows) {
     queryStats.set(row.query, (queryStats.get(row.query) ?? 0) + 1);
   }
   console.log("\n--- Summary ---");
