@@ -39,7 +39,7 @@ export default function PricingPage() {
             {/* Speed to Lead */}
             <div className="relative flex flex-col rounded-2xl bg-white border-2 border-accent shadow-lg shadow-accent/10 p-8 md:p-10">
               <span className="absolute -top-4 left-6 bg-accent text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full">
-                Recurring Revenue
+                Monthly Plan
               </span>
               <div className="mb-6 mt-2">
                 <h3 className="text-2xl font-bold text-slate-800">Speed to Lead</h3>
