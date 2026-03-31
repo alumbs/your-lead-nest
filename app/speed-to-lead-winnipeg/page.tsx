@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import CTAButton from "@/components/CTAButton";
 
 export const metadata: Metadata = {
-  title: "Speed to Lead Winnipeg — Respond to Leads in Under 60 Seconds",
+  title: "Speed to Lead Winnipeg | Automated Lead Response — Your Lead Nest",
   description:
-    "Winnipeg's #1 speed to lead automation service. Automatically follow up with every new lead in under 60 seconds via SMS, email, and phone. Built for local service businesses.",
+    "Most Winnipeg businesses lose leads in the first 5 minutes. Your Lead Nest responds in under 60 seconds — 24/7. Setup this week. No contracts.",
   keywords: [
     "speed to lead Winnipeg",
     "lead response time Winnipeg",
@@ -47,22 +47,23 @@ export default function SpeedToLeadWinnipegPage() {
       <section className="bg-white py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 text-center">
-            What Is Speed to Lead?
+            Speed to Lead for Winnipeg Businesses &mdash; Every Lead. Responded To. Every Time.
           </h2>
           <div className="prose prose-lg max-w-none text-slate-600 leading-relaxed space-y-4">
             <p>
-              <strong className="text-slate-800">Speed to lead</strong> is the time between when a potential customer submits an inquiry
-              and when your business responds. It&apos;s the single most important factor in converting leads into paying customers.
+              Speed to lead is the single biggest factor in closing sales &mdash; and most Winnipeg businesses are failing at it.
+              We set up an automated response system that engages your leads in under 60 seconds &mdash; 24 hours a day,
+              7 days a week.
             </p>
             <p>
-              According to a Harvard Business Review study, businesses that respond within 5 minutes are <strong className="text-slate-800">21 times more
-              likely</strong> to qualify a lead compared to those that wait 30 minutes. After just 10 minutes, the odds of making
-              contact drop by <strong className="text-slate-800">400%</strong>.
+              When a lead calls and you can&apos;t answer, <strong className="text-slate-800">missed call text back</strong> fires
+              instantly so you never lose the conversation. No missed calls. No lost weekends.
+              No &ldquo;I&apos;ll follow up Monday.&rdquo;
             </p>
             <p>
-              For Winnipeg service businesses — HVAC contractors, dental clinics, real estate agents, plumbers, auto shops,
-              and more — this means every minute counts. If a homeowner submits a quote request on your website at 8 PM
-              on a Tuesday, and you don&apos;t respond until 9 AM Wednesday, they&apos;ve already booked with your competitor.
+              Your leads get a real, professional response immediately. You get a qualified conversation waiting when you&apos;re ready.
+              For Winnipeg service businesses &mdash; HVAC contractors, dental clinics, real estate agents, plumbers, auto shops,
+              and more &mdash; this means every minute counts.
             </p>
           </div>
         </div>
@@ -114,9 +115,9 @@ export default function SpeedToLeadWinnipegPage() {
 
           <div className="grid sm:grid-cols-3 gap-8 text-left">
             {[
-              { step: "1", title: "Connect", desc: "We plug into your website forms, Facebook Ads, Google Ads, and CRM. One-time 15-minute setup." },
-              { step: "2", title: "Respond", desc: "Every new lead gets an instant SMS, email, and voicemail drop within 60 seconds. AI-written, human-sounding." },
-              { step: "3", title: "Convert", desc: "The lead is warm and engaged. You step in and close the deal, or let the AI book the appointment for you." },
+              { step: "1", title: "Connect", desc: "We plug into your website forms, Facebook Ads, Google Ads, and CRM. One-time setup — live this week." },
+              { step: "2", title: "Respond", desc: "Every new lead gets instant missed call text back within 60 seconds. Automated follow-up sequences run on your behalf." },
+              { step: "3", title: "Convert", desc: "The lead is warm and engaged. You step in and close the deal, or let appointment booking happen without the back-and-forth." },
             ].map((item) => (
               <div key={item.step} className="bg-slate-50 border border-slate-200 rounded-2xl p-8">
                 <div className="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center text-xl font-bold mb-4">
@@ -209,23 +210,39 @@ export default function SpeedToLeadWinnipegPage() {
                 name: "What is speed to lead?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Speed to lead is the time between when a potential customer submits an inquiry and when your business responds. Research shows that responding within 5 minutes makes you 21x more likely to qualify the lead.",
+                  text: "Speed to lead is how fast a business responds to a new inquiry. Research shows that leads contacted within 5 minutes are 100x more likely to convert than leads contacted after 30 minutes. For Winnipeg businesses, speed to lead is often the difference between booking a job and losing it to a faster competitor.",
                 },
               },
               {
                 "@type": "Question",
-                name: "How fast does Your Lead Nest respond to leads in Winnipeg?",
+                name: "What is missed call text back?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Your Lead Nest responds to every new lead in under 60 seconds, 24/7 — including nights, weekends, and holidays. Our average response time across Winnipeg businesses is under 45 seconds.",
+                  text: "Missed call text back is an automated system that sends a text message to any caller you miss — instantly. Instead of a missed call going to voicemail and going cold, the caller receives a message within seconds and stays in the conversation.",
                 },
               },
               {
                 "@type": "Question",
-                name: "What Winnipeg industries benefit from speed to lead automation?",
+                name: "How fast does Your Lead Nest respond to leads?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Any service-based business benefits, including HVAC, plumbing, dental clinics, real estate agents, roofing contractors, landscaping companies, auto services, legal firms, and fitness studios.",
+                  text: "Your Lead Nest responds to inbound leads in under 60 seconds, 24 hours a day, 7 days a week.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How much does speed to lead automation cost in Winnipeg?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Speed to Lead starts at $497/month per location, with a one-time setup fee of $997 for a 1-person team or $2,500 for up to 3 people.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Does speed to lead automation work for all types of businesses?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. Speed to lead works for any Winnipeg business that receives inbound inquiries — trades, real estate, home services, professional services, and more.",
                 },
               },
             ],

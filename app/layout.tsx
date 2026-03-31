@@ -5,20 +5,20 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "Your Lead Nest — Respond to Every Lead in Under 60 Seconds | Winnipeg",
+    default: "Speed to Lead & AI Consulting Winnipeg | Your Lead Nest",
     template: "%s | Your Lead Nest",
   },
   description:
-    "AI-powered lead response automation for Winnipeg small businesses. Automatically follow up with every new inquiry in under 60 seconds via SMS, email, and phone. Built on GoHighLevel.",
+    "Winnipeg businesses: stop losing leads to slow response. Your Lead Nest automates speed to lead and delivers hands-on AI consulting. Book a call today.",
   keywords: [
     "speed to lead Winnipeg",
-    "lead response automation Winnipeg",
-    "follow up leads automatically small business",
-    "GoHighLevel Winnipeg",
-    "business automation Winnipeg",
     "missed call text back Winnipeg",
-    "AI lead nurturing Winnipeg",
-    "CRM automation Winnipeg",
+    "AI consulting Winnipeg",
+    "lead response automation Winnipeg",
+    "missed call recovery Winnipeg",
+    "AI transformation small business",
+    "business automation Winnipeg",
+    "AI training Winnipeg",
   ],
   metadataBase: new URL("https://yourleadnest.com"),
   openGraph: {
@@ -26,23 +26,23 @@ export const metadata: Metadata = {
     locale: "en_CA",
     url: "https://yourleadnest.com",
     siteName: "Your Lead Nest",
-    title: "Your Lead Nest — Respond to Every Lead in Under 60 Seconds",
+    title: "Your Lead Nest — Lead Recovery & AI Consulting for Winnipeg",
     description:
-      "AI-powered lead response automation for Winnipeg small businesses. Never lose a lead again.",
+      "Stop losing leads and start working smarter. Instant lead recovery and AI team transformation for Winnipeg businesses.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Your Lead Nest — Speed to Lead Automation for Winnipeg Businesses",
+        alt: "Your Lead Nest — Lead Recovery & AI Consulting for Winnipeg Businesses",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Your Lead Nest — Respond to Every Lead in Under 60 Seconds",
+    title: "Your Lead Nest — Lead Recovery & AI Consulting for Winnipeg",
     description:
-      "AI-powered lead response automation for Winnipeg small businesses.",
+      "Stop losing leads and start working smarter. For Winnipeg small businesses.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -60,7 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@type": "LocalBusiness",
     name: "Your Lead Nest",
     description:
-      "AI-powered lead response automation for Winnipeg small businesses. Respond to every lead in under 60 seconds.",
+      "Speed to lead automation and AI consulting for Winnipeg businesses. Missed call text back and automated lead response starting at $497/month.",
     url: "https://yourleadnest.com",
     areaServed: {
       "@type": "City",
@@ -79,9 +79,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     priceRange: "$$",
     serviceType: [
       "Lead Response Automation",
-      "AI Lead Follow-Up",
-      "GoHighLevel Implementation",
-      "Business Automation",
+      "Missed Call Recovery",
+      "AI Consulting",
+      "AI Team Training",
+    ],
+    knowsAbout: [
+      "speed to lead",
+      "missed call text back",
+      "AI consulting",
+      "lead automation",
+      "business automation",
     ],
   };
 

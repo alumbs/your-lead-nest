@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navLinks = [
-  { href: "/how-it-works", label: "How It Works" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/results", label: "Results" },
+  { href: "/speed-to-lead-winnipeg", label: "Speed to Lead" },
+  { href: "/ai-consulting-winnipeg", label: "AI Consulting" },
+  { href: "/#roi-calculator", label: "ROI Calculator" },
   { href: "/faq", label: "FAQ" },
 ];
 
@@ -35,7 +35,7 @@ export default function Header() {
               href="/book-demo"
               className="bg-accent hover:bg-accent-hover text-white font-semibold px-5 py-2 rounded-lg text-sm transition-colors"
             >
-              Book a Demo
+              Book a Call
             </Link>
           </nav>
 
@@ -73,7 +73,7 @@ export default function Header() {
               className="block bg-accent hover:bg-accent-hover text-white font-semibold px-5 py-3 rounded-lg text-center transition-colors"
               onClick={() => setMobileOpen(false)}
             >
-              Book a Demo
+              Book a Call
             </Link>
           </div>
         </div>
