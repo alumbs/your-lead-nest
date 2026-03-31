@@ -55,48 +55,46 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Your Lead Nest",
+    description:
+      "AI-powered lead response automation for Winnipeg small businesses. Respond to every lead in under 60 seconds.",
+    url: "https://yourleadnest.com",
+    areaServed: {
+      "@type": "City",
+      name: "Winnipeg",
+      containedInPlace: {
+        "@type": "AdministrativeArea",
+        name: "Manitoba",
+      },
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Winnipeg",
+      addressRegion: "MB",
+      addressCountry: "CA",
+    },
+    priceRange: "$$",
+    serviceType: [
+      "Lead Response Automation",
+      "AI Lead Follow-Up",
+      "GoHighLevel Implementation",
+      "Business Automation",
+    ],
+  };
+
   return (
     <html lang="en">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              name: "Your Lead Nest",
-              description:
-                "AI-powered lead response automation for Winnipeg small businesses. Respond to every lead in under 60 seconds.",
-              url: "https://yourleadnest.com",
-              areaServed: {
-                "@type": "City",
-                name: "Winnipeg",
-                containedInPlace: {
-                  "@type": "AdministrativeArea",
-                  name: "Manitoba",
-                },
-              },
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Winnipeg",
-                addressRegion: "MB",
-                addressCountry: "CA",
-              },
-              priceRange: "$$",
-              serviceType: [
-                "Lead Response Automation",
-                "AI Lead Follow-Up",
-                "GoHighLevel Implementation",
-                "Business Automation",
-              ],
-            }),
-          }}
-        />
-      </head>
       <body className="bg-white text-slate-800 antialiased">
         <Header />
         <main className="pt-16">{children}</main>
         <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   );
