@@ -36,6 +36,40 @@ export interface GoogleMapsRawResult {
   [key: string]: unknown;
 }
 
+/** Raw result shape from the apify/google-search-scraper Actor. */
+export interface GoogleSerpRawResult {
+  searchQuery?: { term?: string };
+  organicResults?: Array<{
+    title?: string;
+    url?: string;
+    description?: string;
+    position?: number;
+  }>;
+  paidResults?: Array<{
+    title?: string;
+    url?: string;
+    description?: string;
+    position?: number;
+  }>;
+  featuredSnippet?: {
+    title?: string;
+    description?: string;
+    url?: string;
+  } | null;
+  [key: string]: unknown;
+}
+
+/** A single SERP ranking row. */
+export interface SerpRow {
+  query: string;
+  position: number;
+  url: string;
+  title: string;
+  featuredSnippet: boolean;
+  featuredSnippetContent: string | null;
+  organicOrPaid: "organic" | "paid";
+}
+
 /** Configuration for running an Apify Actor. */
 export interface ActorRunConfig {
   actorId: string;
