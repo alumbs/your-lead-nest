@@ -31,6 +31,7 @@ export default function Footer() {
               <li><Link href="/book-demo" className="hover:text-slate-800 transition-colors">Book a Demo</Link></li>
               <li><Link href="/speed-to-lead-winnipeg" className="hover:text-slate-800 transition-colors">Speed to Lead Winnipeg</Link></li>
               <li><Link href="/gohighlevel-winnipeg" className="hover:text-slate-800 transition-colors">GoHighLevel Winnipeg</Link></li>
+              <li><Link href="/gohighlevel-agency-winnipeg" className="hover:text-slate-800 transition-colors">GHL Agency Winnipeg</Link></li>
               <li><Link href="/privacy" className="hover:text-slate-800 transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="hover:text-slate-800 transition-colors">Terms of Service</Link></li>
             </ul>
